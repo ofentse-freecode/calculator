@@ -5,7 +5,9 @@ const deleteButton = document.getElementsByClassName('.del-btn');
 const allClear = document.getElementById("all-clear");
 let currentText = document.getElementsByClassName(".current");
 const previousText = document.getElementsByClassName('.previous');
-
+//testing bellow
+const displayinput = document.querySelector("#display")
+console.log(displayinput)
 
 //currentText.textContent = "";
 //previousText.innerHTML = "3";
@@ -38,16 +40,17 @@ function compute(){
 
 function updateDisplay(){
     currentText.innerText = number;
-    //currentText.appendChild(number)
+   // currentText.appendChild(number)
 }
 
 
 numberButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
-       const value = button.innerText;
+     displayinput.value += button.getAttribute("data-value")
+      /* const value = button.innerText;
         appendNumber(value);
-        //updateDisplay();
-       console.log(previousText.innerHTML)
+        updateDisplay();
+       console.log(previousText.innerHTML)*/
        
     })
 });
