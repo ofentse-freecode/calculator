@@ -15,7 +15,12 @@ let calculation = [];
 
 
 //functions
-function clear(){
+allClear.addEventListener('click', function(){
+    displayinput.value = ""
+    console.log('clicked');
+   
+})
+function clear(e){
 
 }
 
@@ -44,20 +49,25 @@ function updateDisplay(){
 }
 
 
-numberButtons.forEach((button)=>{
+/*numberButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
-     displayinput.value += button.getAttribute("data-value")
-      /* const value = button.innerText;
+       const value = button.innerText;
         appendNumber(value);
         updateDisplay();
-       console.log(previousText.innerHTML)*/
+       console.log(previousText.innerHTML)
        
     })
-});
-allClear.addEventListener('click', function(){
-    console.log('clicked');
-   
+});*/
+document.addEventListener("click", (event)=>{
+    if(event.target.matches(".number, .operation")){
+  const value = event.target.getAttribute("data-value");
+  displayinput.value += value;
+  console.log(displayinput.value);
+    }
 })
+
+
+
 
 //button.addEventListener('click', function(){
     //show.classList.toggle("hide-share");
