@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #282c34;
+}
+
+.calculator {
+    width: 400px;
+    background-color: #3C3D37;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+.display {
+    background-color: #939185;
+    color: #000;
+    border-radius: 5px;
+    text-align: right;
+    padding: 20px;
+    font-size: 2em;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100px;
+    overflow: hidden; 
+}
+
+.previous {
+    color: #575a61;
+    font-size: 0.8em;
+}
+
+.current {
+    font-size: 1.5em;
+}
+
+button {
+    width: 70px;
+    height: 70px;
+    margin: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.btn-ac {
+    background-color: #FAB12F;
+}
+
+.del-btn {
+    background-color: #FA4032;
+}
+
+.operation {
+    background-color: #61677A;
+    font-weight: bold;
+}
+
+.number {
+    background-color: #939185;
+}
+
+.btn-eql {
+    background-color: #FAB12F;
+    border-radius: 50px;
+    font-size: 40px;
+}
+
+button:active {
+    transform: scale(0.98);
+}
