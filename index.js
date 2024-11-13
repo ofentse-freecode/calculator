@@ -1,42 +1,23 @@
 const numberButtons = document.querySelectorAll('.number');
 const operationButtons = document.querySelectorAll('.operation');
-const equalButton = document.getElementsByClassName('.btn-eql');
+const equalButton = document.querySelector('.btn-eql');
 const deleteButton = document.querySelector('.del-btn');
 const allClear = document.getElementById("all-clear");
 let currentText = document.querySelector(".previous");
 const previousText = document.querySelector('.current');
-//testing bellow
-//const displayinput = document.querySelector("#display")
-//console.log(displayinput)
-//console.log(deleteButton)
 
 currentText.textContent = "curr";
 previousText.textContent = "";
 let operand = "";
 let calculation = [];
 
-
+console.log(equalButton)
 
 //functions
-//function for updating the input field
-/*function updateDisplay(){
-    document.addEventListener("click", () =>{
-        if(event.target.matches(".number, .operation")){
-            const value = event.target.getAttribute("data-value");
-            displayinput.value += value;
-            console.log(displayinput.value);
-}});
-    // currentText.innerText = number;
-    // currentText.appendChild(number)
- }
- */
-
-
 
 //function to remove all from input
 function clear(){
     allClear.addEventListener('click', ()=>{
-       // displayinput.value = ""
        currentText.textContent = "";
        previousText.textContent = "";
        calculation = [];
@@ -45,14 +26,7 @@ function clear(){
 }
 //function to delete a single degit
 function deleteNumber(){
-    //deleteButton.addEventListener("click",()=>{
-        //displayinput.value = displayinput.value.slice(0, -1);
-       // console.log(displayinput.value)
-        //previousText.textContent.slice(0, -1);
-        //previousText.innerHTML
-        
-        //console.log("clicked del")
-   // })
+
    const answer = calculation.slice(0, -1);
    previousText.textContent = answer.join("");
     console.log("clicked del", answer);
@@ -83,9 +57,40 @@ return previousText.textContent = calculation = [];
 }
 
 function compute(){
-   
+    equalButton.addEventListener("click", ()=>{
+        const expression = calculation.join("");
+        const parts = expression.match(/(-?\d+(\.\d+)?)([\+\-\*\/])(-?\d+(\.\d+)?)/);
+        if(!parts){
+         console.log("invalid calculation format")
+         return;
+        }
+        const [,operand1, operator, operand2] = parts;
+     
+        switch(operator){
+         case "+":
+             result = parseFloat(operand1) + parseFloat(operand2);
+             break;
+             case "-":
+                 result = parseFloat(operand1) - parseFloat(operand2);
+                 break;
+                 case "*":
+                     result = parseFloat(operand1) * parseFloat(operand2);
+                     break;
+                     case "/":
+                         if(parseFloat(operand2) === 0){
+                             result = "error"
+                         } else{
+                             result = parseFloat(operand1) / parseFloat(operand2)
+                         }
+                         break;
+                         default:
+                             console.log("invalid oparation")
+                             return;
+        }
+    });
+ 
 }
-
+compute()
 
 //calling all functions
  clear()
