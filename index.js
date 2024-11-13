@@ -37,8 +37,7 @@ function compute(){
 }
 
 function updateDisplay(){
-    currentText.innerText = number;
-    //currentText.appendChild(number)
+
 }
 
 
