@@ -18,33 +18,31 @@ let calculation = [];
 //functions
 //function for updating the input field
 function updateDisplay(){
+    document.addEventListener("click", () =>{
+        if(event.target.matches(".number, .operation")){
+            const value = event.target.getAttribute("data-value");
+            displayinput.value += value;
+            console.log(displayinput.value);
+}});
     // currentText.innerText = number;
     // currentText.appendChild(number)
-    document.addEventListener("click", (event)=>{
-     if(event.target.matches(".number, .operation")){
-   const value = event.target.getAttribute("data-value");
-   displayinput.value += value;
-   console.log(displayinput.value);
-     }
- })
  }
 
 
 
 //function to remove all from input
 function clear(){
-    allClear.addEventListener('click', function(){
+    allClear.addEventListener('click', ()=>{
         displayinput.value = ""
         console.log('clicked');
-       
     })
 }
 //function to delete a single degit
 function deleteNumber(){
-    deleteButton.addEventListener("click", ()=>{
+    deleteButton.addEventListener("click",()=>{
         displayinput.value = displayinput.value.slice(0, -1);
         console.log(displayinput.value)
-       })
+    })
 }
 
 
@@ -63,10 +61,13 @@ function compute(){
 
 }
 
+
+//function for handling events
+
 //calling all functions
-updateDisplay()
-clear()
-deleteNumber()
+ updateDisplay()
+ clear()
+ deleteNumber()
 
 /*numberButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
@@ -87,7 +88,4 @@ deleteNumber()
     //console.log("clicked");
     //blogCard.appendChild(title)
 //});
-
-
-
 
