@@ -113,6 +113,13 @@ function compute(){
           console.log(computation, "times")
           break
         case '/':
+            if(working === 0){
+                alert("You cannot divide by zero");
+                previousText.textContent = "";
+                currentText.textContent = "";
+               calculation = [];
+                return ;
+           }
           computation = prev / working
           console.log(computation, "division")
           break
@@ -120,6 +127,7 @@ function compute(){
             //return
             console.log("wow")
     }
+   
     //
    // console.log(curroperand)
    previousText.textContent = computation;
