@@ -46,12 +46,10 @@ if (value === '.' &&  previousText.textContent.includes('.'))
 
 function chooseOperation(operand){
     if(operand === "")return
-   if(operand !== ""){
-        
-        //compute();
-        
+   if(operand !== ""){ 
+        compute();   
     }
-  currentText.textContent = previousText.textContent.toString() + operand.toString();
+  currentText.textContent = previousText.textContent + operand;
   calculation = []
   return previousText.textContent = calculation;
 //console.log(operand)
@@ -95,7 +93,7 @@ function compute(){
  const prev = parseFloat(currentText.textContent);
  console.log(prev)
  const nowoperand = [...currentText.textContent].pop();
- curroperand = nowoperand.toString();
+ curroperand = nowoperand;
  const working = parseFloat(previousText.textContent);
 
 //console.log(curroperand);
@@ -127,9 +125,31 @@ function compute(){
    currentText.textContent = computation;
    calculation = []
    return previousText.textContent = calculation;
+   // adding to the number
 
-}
+};
 
+    /*equalButton.addEventListener("click", ()=> {
+        if (calculation.length < 3) {
+            console.log("Not enough data for calculation");
+            return;
+        }
+
+        let expression = calculation.join(""); 
+        let result;
+        try  {
+            result = eval(expression); 
+        } catch (error) {
+            result = "Error"; 
+        }
+
+        previousText.textContent = result; 
+        currentText.textContent = ""; 
+        calculation = [result.toString()]; 
+    });
+}*/
+
+compute()
 
 //calling all functions
 
