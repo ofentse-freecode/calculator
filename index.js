@@ -48,10 +48,8 @@ if (value === '.' &&  previousText.textContent.includes('.'))
 function chooseOperation(operand){
     if(operand === "")return
    if(operand !== ""){ 
-       // compute();
-    //previousText.textContent = computation;
-    //calculation = computation;   
-    }
+        compute();
+   }
   currentText.textContent = previousText.textContent + operand;
   calculation = []
   return previousText.textContent = calculation;
@@ -100,11 +98,10 @@ function compute(){
  const working = parseFloat(previousText.textContent);
 
 //console.log(curroperand);
-    if (isNaN(prev) || isNaN(working)) return
+    if (isNaN(prev) || isNaN(working)) return//alert??
     switch (curroperand){
         case '+':
           computation = prev + working
-          //console.log(operand)
           console.log(computation,"plus")
           break
         case '-':
@@ -126,7 +123,7 @@ function compute(){
     //
    // console.log(curroperand)
    previousText.textContent = computation;
-   calculation = computation;
+  // calculation = computation;
    //return previousText.textContent = calculation;
    prev = computation
    // adding to the number
@@ -153,7 +150,7 @@ function compute(){
     });
 }*/
 
-compute()
+//compute()
 
 //calling all functions
 
@@ -181,10 +178,5 @@ operationButtons.forEach((operationbutton) =>{
 
 equalButton.addEventListener("click", () =>{
     compute();
-   // updatedisplay()
-   //chooseOperation
-  //console.log("equal")
-
-
 })
 
