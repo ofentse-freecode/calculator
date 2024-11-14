@@ -57,39 +57,26 @@ return previousText.textContent = calculation = [];
 }
 
 function compute(){
-    equalButton.addEventListener("click", ()=>{
-        const expression = calculation.join("");
-        const parts = expression.match(/(-?\d+(\.\d+)?)([\+\-\*\/])(-?\d+(\.\d+)?)/);
-        if(!parts){
-         console.log("invalid calculation format")
-         return;
+    equalButton.addEventListener("click", ()=> {
+        if (calculation.length < 3) {
+            console.log("Not enough data for calculation");
+            return;
         }
-        const [,operand1, operator, operand2] = parts;
-     
-        switch(operator){
-         case "+":
-             result = parseFloat(operand1) + parseFloat(operand2);
-             break;
-             case "-":
-                 result = parseFloat(operand1) - parseFloat(operand2);
-                 break;
-                 case "*":
-                     result = parseFloat(operand1) * parseFloat(operand2);
-                     break;
-                     case "/":
-                         if(parseFloat(operand2) === 0){
-                             result = "error"
-                         } else{
-                             result = parseFloat(operand1) / parseFloat(operand2)
-                         }
-                         break;
-                         default:
-                             console.log("invalid oparation")
-                             return;
+
+        let expression = calculation.join(""); 
+        let result;
+        try  {
+            result = eval(expression); 
+        } catch (error) {
+            result = "Error"; 
         }
+
+        previousText.textContent = result; 
+        currentText.textContent = ""; 
+        calculation = [result.toString()]; 
     });
- 
 }
+
 compute()
 
 //calling all functions
