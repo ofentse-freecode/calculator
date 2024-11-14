@@ -6,12 +6,12 @@ const allClear = document.getElementById("all-clear");
 let currentText = document.querySelector(".previous");
 const previousText = document.querySelector('.current');
 
-currentText.textContent = "curr";
+currentText.textContent = "";
 previousText.textContent = "";
-let operand = "";
+let operand ;
 let calculation = [];
 
-console.log(equalButton)
+//console.log(equalButton)
 
 //functions
 
@@ -23,41 +23,43 @@ function clear(){
        calculation = [];
        console.log('clicked clear');
     })
-}
+}clear()
+
 //function to delete a single degit
 function deleteNumber(){
-
    const answer = calculation.slice(0, -1);
    previousText.textContent = answer.join("");
-    console.log("clicked del", answer);
     return  calculation = answer;
-}
+};
 
 
 function appendNumber(value){
-//currentText.textContent = number.toString() + number.toString()
 if (value === '.' &&  previousText.textContent.includes('.'))
     { return
     }else{
-calculation.push(value);
-fullnumber = calculation.join("")
-return previousText.textContent = fullnumber;
-//console.log(displayinput.innerHTML = fullnumber)
-};
+    calculation.push(value);
+    fullnumber = calculation.join("")
+    return previousText.textContent = fullnumber;
 }
+};
+
 
 function chooseOperation(operand){
     if(operand === "")return
-    if(operand !== ""){
-        compute();
+   if(operand !== ""){
+        
+        //compute();
+        
     }
-currentText.textContent = previousText.textContent;
-return previousText.textContent = calculation = [];
+  currentText.textContent = previousText.textContent.toString() + operand.toString();
+  calculation = []
+  return previousText.textContent = calculation;
+//console.log(operand)
 
-}
+}// console.log(operand)
 
 function compute(){
-    equalButton.addEventListener("click", ()=>{
+   /* equalButton.addEventListener("click", ()=>{
         const expression = calculation.join("");
         const parts = expression.match(/(-?\d+(\.\d+)?)([\+\-\*\/])(-?\d+(\.\d+)?)/);
         if(!parts){
@@ -73,39 +75,70 @@ function compute(){
              case "-":
                  result = parseFloat(operand1) - parseFloat(operand2);
                  break;
-                 case "*":
-                     result = parseFloat(operand1) * parseFloat(operand2);
-                     break;
-                     case "/":
-                         if(parseFloat(operand2) === 0){
-                             result = "error"
-                         } else{
-                             result = parseFloat(operand1) / parseFloat(operand2)
+             case "*":
+                 result = parseFloat(operand1) * parseFloat(operand2);
+                 break;
+             case "/":
+                 if(parseFloat(operand2) === 0){
+                      result = "error"
+                     } else{
+                      result = parseFloat(operand1) / parseFloat(operand2)
                          }
-                         break;
-                         default:
-                             console.log("invalid oparation")
-                             return;
+                    break;
+              default:
+                console.log("invalid oparation")
+                 return;
         }
-    });
- 
+    });*/
+ let computation  ;
+ //console.log(currentText.textContent)
+ const prev = parseFloat(currentText.textContent);
+ console.log(prev)
+ const nowoperand = [...currentText.textContent].pop();
+ curroperand = nowoperand.toString();
+ const working = parseFloat(previousText.textContent);
+
+//console.log(curroperand);
+    if (isNaN(prev) || isNaN(working)) return
+    switch (curroperand){
+        case '+':
+          computation = prev + working
+          //console.log(operand)
+          console.log(computation,"plus")
+          break
+        case '-':
+          computation = prev - working
+          console.log(computation, "minus")
+          break
+        case '*':
+          computation = prev * working
+          console.log(computation, "times")
+          break
+        case '/':
+          computation = prev / working
+          console.log(computation, "division")
+          break
+        default:
+            //return
+            console.log("wow")
+    }
+    //
+   // console.log(curroperand)
+   currentText.textContent = computation;
+   calculation = []
+   return previousText.textContent = calculation;
+
 }
-compute()
+
 
 //calling all functions
- clear()
- //deleteNumber()
 
  //eventListiners.
 
 numberButtons.forEach((button)=>{
     button.addEventListener("click", ()=>{
-       const value = button.innerText;
-        appendNumber(value);
-        //updateDisplay();
-      // console.log(previousText.innerHTML)
-      // return previousText.innerHTML = fullnumber;
-       
+       let value = button.innerText;
+        appendNumber(value);    
     })
 });
 
@@ -114,13 +147,20 @@ deleteButton.addEventListener("click",()=>{
 });
 
 
-operationButtons.forEach((numberbutton) =>{
-    numberbutton.addEventListener("click",()=>{
-        const operand = numberbutton.innerText;
-        appendNumber(operand);
-        chooseOperation(operand);
+operationButtons.forEach((operationbutton) =>{
+    operationbutton.addEventListener("click",()=>{
+        let operand = operationbutton.innerText;
+        chooseOperation(operand);   
 })  
 });
 
 
+equalButton.addEventListener("click", () =>{
+    compute();
+   // updatedisplay()
+   //chooseOperation
+  //console.log("equal")
+
+
+})
 
