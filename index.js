@@ -10,6 +10,7 @@ currentText.textContent = "";
 previousText.textContent = "";
 let operand ;
 let calculation = [];
+let computation;
 
 //console.log(equalButton)
 
@@ -47,7 +48,9 @@ if (value === '.' &&  previousText.textContent.includes('.'))
 function chooseOperation(operand){
     if(operand === "")return
    if(operand !== ""){ 
-        compute();   
+       // compute();
+    //previousText.textContent = computation;
+    //calculation = computation;   
     }
   currentText.textContent = previousText.textContent + operand;
   calculation = []
@@ -88,10 +91,10 @@ function compute(){
                  return;
         }
     });*/
- let computation  ;
+   
  //console.log(currentText.textContent)
- const prev = parseFloat(currentText.textContent);
- console.log(prev)
+ let prev = parseFloat(currentText.textContent);
+ //console.log(prev)
  const nowoperand = [...currentText.textContent].pop();
  curroperand = nowoperand;
  const working = parseFloat(previousText.textContent);
@@ -122,9 +125,10 @@ function compute(){
     }
     //
    // console.log(curroperand)
-   currentText.textContent = computation;
-   calculation = []
-   return previousText.textContent = calculation;
+   previousText.textContent = computation;
+   calculation = computation;
+   //return previousText.textContent = calculation;
+   prev = computation
    // adding to the number
 
 };
