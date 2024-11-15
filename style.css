@@ -80,9 +80,12 @@ button:hover {
 }
 
 .btn-eql {
+    width: 155px;
+    height: 70px;
     background-color: #FAB12F;
-    border-radius: 50px;
-    font-size: 40px;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 1.5em;
 }
 
 button:active {
