@@ -12,25 +12,22 @@ let operand ;
 let calculation = [];
 let computation;
 
-//console.log(equalButton)
 
-//functions
 
-//function to remove all from input
 function clear(){
     allClear.addEventListener('click', ()=>{
        currentText.textContent = "";
        previousText.textContent = "";
        calculation = [];
-       console.log('clicked clear');
     })
 }clear();
 
-//function to delete a single degit
- function deleteNumber(){
+  
+function deleteNumber(){
    const answer = calculation.slice(0, -1);
    previousText.textContent = answer.join("");
     return calculation = answer;
+
 }; 
 
 
@@ -50,42 +47,28 @@ function chooseOperation(operand){
    if(operand !== "" ){ 
         compute();
    }
-   //if(!isNaN(operand)){ 
-  //  compute();
-//}
- // currentText.textContent = previousText.textContent + operand;
   currentText.textContent = previousText.textContent + operand;
   calculation = []
   return previousText.textContent = calculation;
-//console.log(operand)
 
-}// console.log(operand)
+};
 
 function compute(){
-  
- //console.log(currentText.textContent)
  let prev = parseFloat(currentText.textContent);
- //console.log(prev)
  let nowoperand = [...currentText.textContent].pop();
  let curroperand = nowoperand;
  const working = parseFloat(previousText.textContent);
 
-//console.log(curroperand);
-    if (isNaN(prev) || isNaN(working)) return//alert??
+    if (isNaN(prev) || isNaN(working)) return 
     switch (curroperand){
         case '+':
           computation = prev + working;
-          console.log(computation,"plus", prev, working);
-          
           break
         case '-':
           computation = prev - working
-          console.log(computation, "minus")
-          operand= "";
           break
         case 'x':
           computation = prev * working
-          console.log(computation, "times")
           break
         case '/':
             if(working === 0){
@@ -100,25 +83,18 @@ function compute(){
           break;
         case '%':
             computation = prev / working 
-            console.log(computation, "percent")
             break
         default:
-            //return
-            console.log("wow")
+            alert("enter a valid input");
     }
    
-    //
-   // console.log(curroperand)
    previousText.textContent = computation;
    calculation = computation;
     currentText.textContent = "";
    prev = computation
 
-   // adding to the number
-
 };
 
-//calling all functions
 
  //eventListiners.
 
@@ -143,6 +119,6 @@ operationButtons.forEach((operationbutton) =>{
 
 
 equalButton.addEventListener("click", () =>{
-    compute();
+       compute(); 
 })
 
