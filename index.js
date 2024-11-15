@@ -28,9 +28,9 @@ function clear(){
 
 //function to delete a single degit
 function deleteNumber(){
-   const answer = answerarray.slice(0, -1);
+   const answer = calculation.slice(0, -1);
    previousText.textContent = answer.join("");
-    return  calculation = answer;
+    return calculation = answer;
 };
 
 
@@ -83,7 +83,7 @@ function compute(){
           console.log(computation, "minus")
           operand= "";
           break
-        case '*':
+        case 'x':
           computation = prev * working
           console.log(computation, "times")
           break
@@ -97,7 +97,11 @@ function compute(){
            }
           computation = prev / working
           console.log(computation, "division")
-          break
+          break;
+        case '%':
+            computation = prev / working 
+            console.log(computation, "percent")
+            break
         default:
             //return
             console.log("wow")
