@@ -27,11 +27,11 @@ function clear(){
 }clear();
 
 //function to delete a single degit
-function deleteNumber(){
+ function deleteNumber(){
    const answer = calculation.slice(0, -1);
    previousText.textContent = answer.join("");
     return calculation = answer;
-};
+}; 
 
 
 function appendNumber(value){
