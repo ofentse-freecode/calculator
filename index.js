@@ -50,6 +50,10 @@ function chooseOperation(operand){
    if(operand !== ""){ 
         compute();
    }
+   //if(!isNaN(operand)){ 
+  //  compute();
+//}
+ // currentText.textContent = previousText.textContent + operand;
   currentText.textContent = previousText.textContent + operand;
   calculation = []
   return previousText.textContent = calculation;
@@ -94,7 +98,7 @@ function compute(){
  let prev = parseFloat(currentText.textContent);
  //console.log(prev)
  const nowoperand = [...currentText.textContent].pop();
- curroperand = nowoperand;
+ let curroperand = nowoperand;
  const working = parseFloat(previousText.textContent);
 
 //console.log(curroperand);
@@ -123,9 +127,10 @@ function compute(){
     //
    // console.log(curroperand)
    previousText.textContent = computation;
-  // calculation = computation;
+   calculation = computation;
    //return previousText.textContent = calculation;
    prev = computation
+
    // adding to the number
 
 };
