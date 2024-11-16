@@ -40,14 +40,26 @@ function deleteNumber(){
 
 
 function appendNumber(value){
- calculation.push(value);
-if (value === '.' &&  previousText.textContent.includes('.') || value === '0' &&  previousText.textContent.includes('0.'))
-    { return
+    if(previousText.textContent === "0" && value === "0"){
+        return;
     }
-    else{
-    fullnumber = calculation.join("")
-    return previousText.textContent = fullnumber;
-}
+    if (previousText.textContent === '0') {
+        previousText.textContent = value;
+        calculation = [value];  // Reset the calculation array with the new digit
+    } else {
+        // Continue appending the number if there's already a valid number
+        calculation.push(value);
+        fullnumber = calculation.join("");
+        previousText.textContent = fullnumber;
+    }
+//  calculation.push(value);
+// if (value === '.' &&  previousText.textContent.includes('.') || value === '0' &&  previousText.textContent.includes('0.'))
+//     { return
+//     }
+//     else{
+//     fullnumber = calculation.join("")
+//     return previousText.textContent = fullnumber;
+// }
 };
 
 
@@ -100,14 +112,17 @@ function compute(){
     switch (curroperand){
         case '+':
           computation = prev + working;
+          computation = Math.round(computation * 100) / 100;
             formatResult(computation)
           break
         case '-':
           computation = prev - working
+          computation = Math.round(computation * 100) / 100;
           formatResult(computation)
           break
         case 'x':
           computation = prev * working
+          computation = Math.round(computation * 100) / 100;
           formatResult(computation)
           break
         case '/':
@@ -119,10 +134,12 @@ function compute(){
                 return ;
            }
           computation = prev / working
+          computation = Math.round(computation * 100) / 100;
           formatResult(computation)
           break;
         case '%':
             computation = prev / working 
+            computation = Math.round(computation * 100) / 100;
             formatResult(computation)
             break
         default:
@@ -172,7 +189,24 @@ equalButton.addEventListener("click", (e) =>{
        compute(); 
 });
 
-//document.addEventListener("keydown", (event => {
+document.addEventListener("keydown", ()=>{
+    const key = event.key;
 
-//}))
-
+    if(key >= '0' && key <= '9'){
+        appendNumber(key);
+    } else if  (key === '.' || key === ',') {
+        appendNumber('.');
+    }
+    else if (key === '+' || key === '-' || key === '*' || key === '/' || key === '%') {
+        chooseOperation(key);
+    }
+    else if (key === 'Enter' || key === '=') {
+        compute();
+    }
+    else if (key === 'Backspace') {
+        deleteNumber();
+    }
+    else if (key === 'c' || key === 'C') {
+        clear();
+    }
+})
