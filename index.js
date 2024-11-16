@@ -24,6 +24,14 @@ function clear(){
 
   
 function deleteNumber(){
+    if(calculation.length == "0"){
+        delnum = [...currentText.textContent];
+        text = delnum.slice(0, -1);
+         retdelnum = text.join("");
+        currentText.textContent = ""
+         previousText.textContent = retdelnum;
+         return calculation = [...retdelnum]
+    }
    const answer = calculation.slice(0, -1);
    previousText.textContent = answer.join("");
     return calculation = answer;
@@ -32,10 +40,11 @@ function deleteNumber(){
 
 
 function appendNumber(value){
-if (value === '.' &&  previousText.textContent.includes('.'))
+ calculation.push(value);
+if (value === '.' &&  previousText.textContent.includes('.') || value === '0' &&  previousText.textContent.includes('0.'))
     { return
-    }else{
-    calculation.push(value);
+    }
+    else{
     fullnumber = calculation.join("")
     return previousText.textContent = fullnumber;
 }
@@ -43,32 +52,63 @@ if (value === '.' &&  previousText.textContent.includes('.'))
 
 
 function chooseOperation(operand){
-    if(operand === "")return
-   if(operand !== "" ){ 
+/*if (previousText.textContent != ""){
+    checkop = calculation.push(operand);
+    console.log(currentText.textContent)
+    operandans = calculation.join("");
+   previousText.textContent = operandans;
+}*/
+/*else{ 
+      compute();
+      // currentText.textContent =  previousText.textContent;
+      currentText.textContent = previousText.textContent + operand;
+      console.log(currentText.textContent);
+      //currentText.textContent = previousText.textContent.push(operand);
+      calculation = []
+      return previousText.textContent = calculation;
+ }*/
+  // op = !currentText.textContent.includes(operand)
+   // console.log(op)
+   // while(op){
+   if(!currentText.textContent.includes(operand)){ 
         compute();
-   }
+  // }
   currentText.textContent = previousText.textContent + operand;
+  console.log("last", currentText.textContent)
   calculation = []
   return previousText.textContent = calculation;
+   }
 
 };
 
+function formatResult (result){
+    if (result !== 0 && (Math.abs(result) >= 1e9 || Math.abs(result) < 1e9)){
+        return result.toExponential(9);
+    }else {
+        return `${Math.round(result * 1e9) / 1e9}`;
+    }
+}
 function compute(){
  let prev = parseFloat(currentText.textContent);
  let nowoperand = [...currentText.textContent].pop();
  let curroperand = nowoperand;
  const working = parseFloat(previousText.textContent);
+ console.log(currentText.textContent)
+ console.log(previousText.textContent)
 
     if (isNaN(prev) || isNaN(working)) return 
     switch (curroperand){
         case '+':
           computation = prev + working;
+            formatResult(computation)
           break
         case '-':
           computation = prev - working
+          formatResult(computation)
           break
         case 'x':
           computation = prev * working
+          formatResult(computation)
           break
         case '/':
             if(working === 0){
@@ -79,19 +119,20 @@ function compute(){
                 return ;
            }
           computation = prev / working
-          console.log(computation, "division")
+          formatResult(computation)
           break;
         case '%':
             computation = prev / working 
+            formatResult(computation)
             break
         default:
             alert("enter a valid input");
     }
    
-   previousText.textContent = computation;
    calculation = computation;
     currentText.textContent = "";
-   prev = computation
+   prev = computation;
+  return previousText.textContent = computation;
 
 };
 
@@ -104,6 +145,12 @@ numberButtons.forEach((button)=>{
         appendNumber(value);    
     })
 });
+/*numberButtons.forEach((button)=>{
+    button.addEventListener("keydown", (event)=>{
+       let event = button.innerText;
+        appendNumber(event);    
+    })
+});*/
 
 deleteButton.addEventListener("click",()=>{
      deleteNumber();
@@ -116,9 +163,16 @@ operationButtons.forEach((operationbutton) =>{
         chooseOperation(operand);   
 })  
 });
+equalButton.addEventListener("keydown", (e) =>{
 
+    compute(); 
+});
 
-equalButton.addEventListener("click", () =>{
+equalButton.addEventListener("click", (e) =>{
        compute(); 
-})
+});
+
+//document.addEventListener("keydown", (event => {
+
+//}))
 
