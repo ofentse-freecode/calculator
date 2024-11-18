@@ -53,13 +53,12 @@ function appendNumber(value){
 };
 
 function chooseOperation(operand){
-   if(!currentText.textContent.includes(operand)){ 
+    if(operand != "")
+    { 
         compute();
-  
-  currentText.textContent = previousText.textContent + operand;
-  console.log("last", currentText.textContent)
-  calculation = []
-  return previousText.textContent = calculation;
+        currentText.textContent = previousText.textContent + operand;
+        calculation = []
+        return previousText.textContent = calculation;
    }
 
 };
