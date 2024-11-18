@@ -12,8 +12,6 @@ let operand ;
 let calculation = [];
 let computation;
 
-
-
 function clear(){
     allClear.addEventListener('click', ()=>{
        currentText.textContent = "";
