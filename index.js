@@ -45,44 +45,17 @@ function appendNumber(value){
         previousText.textContent = value;
         calculation = [value];  // Reset the calculation array with the new digit
     } else {
-        // Continue appending the number if there's already a valid number
         calculation.push(value);
         fullnumber = calculation.join("");
         previousText.textContent = fullnumber;
     }
-//  calculation.push(value);
-// if (value === '.' &&  previousText.textContent.includes('.') || value === '0' &&  previousText.textContent.includes('0.'))
-//     { return
-//     }
-//     else{
-//     fullnumber = calculation.join("")
-//     return previousText.textContent = fullnumber;
-// }
+
 };
 
-
 function chooseOperation(operand){
-/*if (previousText.textContent != ""){
-    checkop = calculation.push(operand);
-    console.log(currentText.textContent)
-    operandans = calculation.join("");
-   previousText.textContent = operandans;
-}*/
-/*else{ 
-      compute();
-      // currentText.textContent =  previousText.textContent;
-      currentText.textContent = previousText.textContent + operand;
-      console.log(currentText.textContent);
-      //currentText.textContent = previousText.textContent.push(operand);
-      calculation = []
-      return previousText.textContent = calculation;
- }*/
-  // op = !currentText.textContent.includes(operand)
-   // console.log(op)
-   // while(op){
    if(!currentText.textContent.includes(operand)){ 
         compute();
-  // }
+  
   currentText.textContent = previousText.textContent + operand;
   console.log("last", currentText.textContent)
   calculation = []
@@ -160,12 +133,7 @@ numberButtons.forEach((button)=>{
         appendNumber(value);    
     })
 });
-/*numberButtons.forEach((button)=>{
-    button.addEventListener("keydown", (event)=>{
-       let event = button.innerText;
-        appendNumber(event);    
-    })
-});*/
+
 
 deleteButton.addEventListener("click",()=>{
      deleteNumber();
@@ -178,10 +146,7 @@ operationButtons.forEach((operationbutton) =>{
         chooseOperation(operand);   
 })  
 });
-equalButton.addEventListener("keydown", (e) =>{
 
-    compute(); 
-});
 
 equalButton.addEventListener("click", (e) =>{
        compute(); 
