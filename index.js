@@ -147,11 +147,11 @@ operationButtons.forEach((operationbutton) =>{
 });
 
 
-equalButton.addEventListener("click", (e) =>{
+equalButton.addEventListener("click", () =>{
        compute(); 
 });
 
-document.addEventListener("keydown", ()=>{
+document.addEventListener("keydown", (event)=>{
     const key = event.key;
 
     if(key >= '0' && key <= '9'){
